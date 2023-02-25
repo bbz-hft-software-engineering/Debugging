@@ -1,7 +1,46 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
+
+class Person {
+private:
+    string name;
+    int age;
+public:
+    Person(string n, int a) {
+        name = n;
+        age = a;
+    }
+    string getName() {
+        return name;
+    }
+    int getAge() {
+        return age;
+    }
+};
+
+class Family {
+private:
+    vector<Person> members;
+public:
+    void addMember(Person p) {
+        members.push_back(p);
+    }
+    int getFamilySize() {
+        return members.size();
+    }
+    Person getYoungestMember() {
+        Person youngest("", 1000);
+        for (int i = 0; i < members.size(); i++) {
+            if (members[i].getAge() < youngest.getAge()) {
+                youngest = members[i];
+            }
+        }
+        return youngest;
+    }
+};
 
 void aufgabe1();
 void aufgabe2();
@@ -11,16 +50,20 @@ void aufgabe5();
 string remove_duplicates(string s);
 void aufgabe6();
 bool is_prime(int n);
+void aufgabe7();
+void aufgabe8();
 
 int main()
 {
     
-    aufgabe1();
+    //aufgabe1();
     //aufgabe2();
     //aufgabe3();
     //aufgabe4();
     //aufgabe5();
     //aufgabe6();
+    //aufgabe7();
+    aufgabe8();
 
 }
 
@@ -127,4 +170,29 @@ bool is_prime(int n) {
     }
 
     return true;
+}
+
+void aufgabe7() {
+    int* ptr = nullptr;
+    int x = 5;
+    *ptr = x;
+
+    std::cout << "Value of x: " << x << std::endl;
+    std::cout << "Value of ptr: " << *ptr << std::endl;
+}
+
+void aufgabe8() {
+    Person p1("Alice", 25);
+    Person p2("Bob", 30);
+    Person p3("Charlie", 20);
+
+    Family myFamily;
+    //myFamily.addMember(p1);
+    //myFamily.addMember(p2);
+    //myFamily.addMember(p3);
+
+    cout << "Number of family members: " << myFamily.getFamilySize() << endl;
+    cout << "Youngest family member: " << myFamily.getYoungestMember().getName() << endl;
+    cout << "Age of the youngest family member: " << myFamily.getYoungestMember().getAge() << endl;
+
 }
